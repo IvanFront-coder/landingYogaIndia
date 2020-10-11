@@ -1,6 +1,18 @@
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    let infoBlock = document.querySelector('.info'),
+        descrBtns = document.querySelectorAll('.description-btn');
+
+    descrBtns.forEach(function(item) {
+        item.addEventListener('click', showModal);
+    });
+
+
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
@@ -86,5 +98,23 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     setClock('timer', deadline);
+
+    // Modal
+
+    more.addEventListener('click', showModal);
+
+    close.addEventListener('click', hideModal);
+
+    function showModal() {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    }
 });
 
